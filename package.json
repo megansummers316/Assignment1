@@ -9,5 +9,10 @@
     "@types/express": "^5.0.6",
     "@types/node": "^26.6.4",
     "ts-node": "^10.9.2"
-  }
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js"
+  },
+  "type": "module"
 }
