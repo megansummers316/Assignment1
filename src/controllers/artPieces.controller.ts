@@ -4,7 +4,19 @@ import ArtPieces from "../models/artPiece.model.js";
 
 const router: Router = express.Router();
 
-// GET all
+/**
+ * @swagger
+ * /api/v1/artPIeces:
+ *   get:
+ *     tags:
+ *       - Art Pieces
+ *     summary: Retrieve all art pieces
+ *     responses:
+ *       200:
+ *         description: A list of art pieces
+ *       404:
+ *         description: No art pieces found
+ */
 router.get('/', async (req: Request, res: Response) => {
     const artPieces = await ArtPieces.find();
 
@@ -12,7 +24,25 @@ router.get('/', async (req: Request, res: Response) => {
     return res.status(200).json(artPieces);
 });
 
-// GET one
+/**
+ * @swagger
+ * /api/v1/artPieces/{id}:
+ *   get:
+ *     tags:
+ *       - Art Piece
+ *     summary: Find art piece by ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Returns the selected art piece
+ *       404:
+ *         description: Art not found
+ */
 router.get('/:id', async (req: Request, res: Response) => {
     const artPiece = await ArtPieces.findById(req.params.id);
 
@@ -20,14 +50,79 @@ router.get('/:id', async (req: Request, res: Response) => {
     return res.status(200).json(artPiece);
 });
 
-// POST: create new art piece
+/**
+ * @swagger
+ * /api/v1/artPieces:
+ *   post:
+ *     tags:
+ *       - Art Piece
+ *     summary: Add a new art piece
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - title
+ *               - date
+ *               - artist
+ *             properties:
+ *               name:
+ *                 type: string
+ *               title:
+ *                 type: string
+ *               date:
+ *                 type: date
+ *               artist:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Art Piece created
+ *       400:
+ *         description: Bad request
+ */
 router.post('/', async (req: Request, res: Response) => {
     if (!req.body) return res.status(400).json({ err: 'Invalid Request Body' });
     await ArtPieces.create(req.body);
     return res.status(201).json(); //201: resource created
 });
 
-// PUT: update an art piece
+/**
+ * @swagger
+ * /api/v1/artPieces/{id}:
+ *   put:
+ *     tags:
+ *       - Art Piece
+ *     summary: Update an art piece
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               title:
+ *                 type: string
+ *               date:
+ *                 type: date
+ *               artist:
+ *                 type: string
+ *     responses:
+ *       204:
+ *         description: Art Piece updated
+ *       404:
+ *         description: Art Piece not found
+ */
 router.put('/:id', async (req: Request, res: Response) => {
     const artPiece = await ArtPieces.findById(req.params.id);
 
@@ -37,7 +132,25 @@ router.put('/:id', async (req: Request, res: Response) => {
     return res.status(204).json({ msg: 'Art Piece updated' });
 });
 
-// DELETE: delete by id
+/**
+ * @swagger
+ * /api/v1/artPiece/{id}:
+ *   delete:
+ *     tags:
+ *       - Art Piece
+ *     summary: Delete selected art piece
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         schema:
+ *         type: string
+ *         required: true
+ *     responses:
+ *       204:
+ *         description: Deletes selected art piece
+ *       404:
+ *         description: Art Piece not found
+ */
 router.delete('/:id', async (req: Request, res: Response) => {
     const artPiece = await ArtPieces.findById(req.params.id);
     if (artPiece == null) return res.status(404).json({ err: 'Art Piece not found' });
