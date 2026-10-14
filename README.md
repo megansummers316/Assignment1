@@ -14,3 +14,8 @@ DELETE: `/api/v1/artPieces/:id` => Delete an art piece
 API Documentation
 Swagger documentation is available at:
 `/api/docs`
+Render URL: https://artpieces.onrender.com/api/docs
+
+
+Main Render URL: https://artpieces.onrender.com/api/v1/artPieces
+GitHub URL: https://github.com/megansummers316/Assignment1
