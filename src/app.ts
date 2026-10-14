@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 // express imports
 import express, { Application } from "express";
 import mongoose from "mongoose";
