@@ -1,18 +1,18 @@
 import mongoose, {Schema} from "mongoose";
 
-interface IAssessment {
-    category: string; //painting/statues/pottery/crafts
+interface IArtPieces {
+    category: string; //painting/sculptures/pottery/crafts
     title: string; 
-    date: Date; //date created
+    date: Date; 
     artist: string;
 }
 
-const assessmentSchema = new Schema({
+const artPiecesSchema = new Schema({
     category: {
         type: String,
         trim: true,
         required: true,
-        enum: ['Painting', 'Statue', 'Pottery', 'Craft']
+        enum: ['Painting', 'Sculpture', 'Pottery', 'Craft']
     },
     title: {
         type: String,
@@ -25,10 +25,9 @@ const assessmentSchema = new Schema({
     },
     artist: {
         type: String,
-        trim: true,
-        required: true
+        trim: true
     }
 });
 
-const Assess = mongoose.model<IAssessment>('Assess', assessmentSchema);
-export default Assess;
+const ArtPieces = mongoose.model<IArtPieces>('ArtPieces', artPiecesSchema);
+export default ArtPieces;
