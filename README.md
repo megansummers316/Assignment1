@@ -1,16 +1,7 @@
 Art Pieces API
 
-Description
 The Art Pieces API is a REST API that allows users to manage information about different types of art. It uses Node.js, Express, TypeScript, and MongoDB to store and manage art piece records.
 Each art piece includes a category, title, date, and artist. The available categories are Painting, Sculpture, Pottery, and Craft.
-
-Technologies Used
-- Node.js
-- Express.js
-- TypeScript
-- MongoDB Atlas
-- Mongoose
-- Swagger
 
 API Endpoints
 The API supports the following CRUD operations:
